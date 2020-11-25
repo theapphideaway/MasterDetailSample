@@ -20,15 +20,14 @@ class ListAdapter(private val list: ArrayList<String>, private val activity: Fra
             fragment.item = list[position]
             if(twoPane) {
                 activity.supportFragmentManager.beginTransaction()
-                    .add(R.id.tablet_detail_container, fragment)
+                    .replace(R.id.tablet_detail_container, fragment)
                     .commit()
             }
             else {
-                val manager = activity.supportFragmentManager
-                manager.findFragmentById(R.id.main_fragment_container)
-                val transaction = manager.beginTransaction()
-                transaction.addToBackStack("")
-                transaction.replace(R.id.main_fragment_container, fragment).commit()
+                activity.supportFragmentManager.beginTransaction()
+                    .addToBackStack("")
+                    .replace(R.id.main_fragment_container, fragment)
+                    .commit()
             }
 
         }
